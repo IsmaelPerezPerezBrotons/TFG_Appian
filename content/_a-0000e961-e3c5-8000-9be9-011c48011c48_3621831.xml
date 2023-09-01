@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3624716</versionUuid>
+    <constant>
+        <name>JA_TYPES_OF_STATUS</name>
+        <uuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831</uuid>
+        <description>Types of status that a issue can be. [1]To Be Discussed, [2]Open, [3]In Progress, [4]Blocked, [5]Testing, [6]Close, [7] To Be Assign</description>
+        <parentUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3605536</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+            <value>
+                <el>To Be Discussed</el>
+                <el>Open</el>
+                <el>In Progress</el>
+                <el>Blocked</el>
+                <el>Testing</el>
+                <el>Close</el>
+                <el>To Be Assign</el>
+            </value>
+        </typedValue>
+        <isEnvironmentSpecific>false</isEnvironmentSpecific>
+    </constant>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e961-e3c5-8000-9be9-011c48011c48_3624716"/>
+    </history>
+</contentHaul>

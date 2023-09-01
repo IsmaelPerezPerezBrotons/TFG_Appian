@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001ea40-64f1-8000-9bf3-011c48011c48_4492617</versionUuid>
+    <interface>
+        <name>JA_MainOpenIssue</name>
+        <uuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3670892</uuid>
+        <description>Interface to surface other interfaces</description>
+        <parentUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3605549</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!nextInterface,
+  local!insertedIssue,
+  local!insertInterface,
+  /*the interface we're now*/
+  local!selectedInterface: wherecontains(
+    local!nextInterface,
+    #"_a-0001ea40-64f1-8000-9bf3-011c48011c48_4492264"
+  ),
+  {
+    choose(
+      if(
+        a!isNullOrEmpty(local!selectedInterface),
+        wherecontains(
+          "JA_AddOrUpdateIssue",
+          #"_a-0001ea40-64f1-8000-9bf3-011c48011c48_4492264"
+        ),
+        local!selectedInterface
+      ),
+      /*1.error interface*/
+      #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3623752"(nextInterface: local!nextInterface),
+      /*2. Open a new Issue*/
+      #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621818"(
+        JA_issue: local!insertInterface,
+        nextInterface: local!nextInterface,
+        test: false,
+        insertedIssue: local!insertedIssue
+      ),
+      /*3. Success interface*/
+      #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3670952"(
+        ja_issue: local!insertedIssue,
+        nextInterface: local!nextInterface
+      )
+    )
+  }
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e961-e3c5-8000-9be9-011c48011c48_3672647"/>
+        <historyInfo versionUuid="_a-0001ea40-64f1-8000-9bf3-011c48011c48_4492617"/>
+    </history>
+</contentHaul>

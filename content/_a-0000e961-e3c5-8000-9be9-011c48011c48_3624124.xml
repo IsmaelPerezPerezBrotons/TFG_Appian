@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001ea40-64f1-8000-9bf3-011c48011c48_4502144</versionUuid>
+    <interface>
+        <name>JA_SearchBar</name>
+        <uuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3624124</uuid>
+        <description>Search Bar for the Issues</description>
+        <parentUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3605549</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{
+  #"SYSTEM_SYSRULES_boxLayout"(
+    label: "Filter Issue",
+    labelSize: "SMALL",
+    contents: {
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Issue Name",
+                labelPosition: "ABOVE",
+                value: ri!JA_issue.IssueName,
+                saveInto: ri!JA_issue.IssueName,
+                refreshAfter: "UNFOCUS",
+                validations: {}
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_dropdownField_v1"(
+                label: "Type of Issue",
+                labelPosition: "ABOVE",
+                placeholder: "--- Select a Value ---",
+                choiceLabels: #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621825",
+                choiceValues: #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621825",
+                value: ri!JA_issue.IssueType,
+                saveInto: ri!JA_issue.IssueType,
+                searchDisplay: "AUTO",
+                validations: {}
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_dropdownField_v1"(
+                label: "Priority",
+                labelPosition: "ABOVE",
+                placeholder: "--- Select a Value ---",
+                choiceLabels: #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621866",
+                choiceValues: #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621866",
+                value: ri!JA_issue.Priority,
+                saveInto: ri!JA_issue.Priority,
+                searchDisplay: "AUTO"
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_pickerFieldUsers"(
+                label: "Assignee",
+                labelPosition: "ABOVE",
+                maxSelections: 1,
+                groupFilter: #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621908",
+                value: ri!JA_issue.Assignee,
+                saveInto: ri!JA_issue.Assignee
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_pickerFieldUsers"(
+                label: "Reporter",
+                labelPosition: "ABOVE",
+                maxSelections: 1,
+                groupFilter: #"_a-0001ea40-64f1-8000-9bf3-011c48011c48_4485740",
+                value: ri!JA_issue.Reporter,
+                saveInto: ri!JA_issue.Reporter
+              )
+            }
+          )
+        }
+      ),
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_dropdownField_v1"(
+                label: "Resolution",
+                labelPosition: "ABOVE",
+                placeholder: "--- Select a Value ---",
+                choiceLabels: { "Yes", "No" },
+                choiceValues: { true, false },
+                value: ri!JA_issue.Resolution,
+                saveInto: ri!JA_issue.Resolution,
+                validations: {}
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_dateField"(
+                label: "Created",
+                labelPosition: "ABOVE",
+                value: ri!JA_issue.Created,
+                saveInto: ri!JA_issue.Created
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_dateField"(
+                label: "Updated",
+                labelPosition: "ABOVE",
+                value: ri!JA_issue.Updated,
+                saveInto: ri!JA_issue.Updated
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_dateField"(
+                label: "Due Date",
+                labelPosition: "ABOVE",
+                value: ri!JA_issue.Duedate,
+                saveInto: ri!JA_issue.Duedate
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+                buttons: {
+                  #"SYSTEM_SYSRULES_ButtonWidget"(
+                    label: "clear",
+                    value: 'type!{urn:com:appian:types:IP}JA_issue'(),
+                    saveInto: ri!JA_issue,
+                    style: "NORMAL"
+                  ),
+                  #"SYSTEM_SYSRULES_ButtonWidget"(
+                    label: "Search",
+                    submit: true(),
+                    size: "STANDARD",
+                    width: "MINIMIZE",
+                    style: "PRIMARY"
+                  )
+                },
+                align: "END",
+                marginAbove: "MORE",
+                marginBelow: "NONE"
+              )
+            }
+          )
+        },
+        showDividers: false
+      )
+    },
+    style: "STANDARD",
+    shape: "SQUARED",
+    isCollapsible: true,
+    isInitiallyCollapsed: false,
+    padding: "NONE",
+    marginAbove: "NONE",
+    marginBelow: "LESS",
+    showBorder: false,
+    showShadow: false
+  )
+}</definition>
+        <namedTypedValue>
+            <name>JA_issue</name>
+            <type>
+                <name>JA_issue</name>
+                <namespace>urn:com:appian:types:IP</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">'type!{urn:com:appian:types:IP}JA_issue'()</a:value>
+                    <a:nameRef>JA_issue</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e961-e3c5-8000-9be9-011c48011c48_3645145"/>
+        <historyInfo versionUuid="_a-0001ea40-64f1-8000-9bf3-011c48011c48_4502144"/>
+    </history>
+</contentHaul>

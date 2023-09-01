@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001ea40-64f1-8000-9bf3-011c48011c48_4507533</versionUuid>
+    <interface>
+        <name>JA_deleteSummary</name>
+        <uuid>_a-0001ea40-64f1-8000-9bf3-011c48011c48_4458478</uuid>
+        <description>Summary Before Delete an Issue</description>
+        <parentUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3605549</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    label: concat(
+      "About to delete: ",
+      #"SYSTEM_SYSRULES_forEach"(
+        items: ri!nameIssuesToDelete,
+        expression: concat("'", fv!item, "' ")
+      )
+    ),
+    contents: {
+      #"SYSTEM_SYSRULES_forEach"(
+        items: ri!nameIssuesToDelete,
+        expression: #"SYSTEM_SYSRULES_columnsLayout"(
+          columns: {
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_paragraphField"(
+                  required: true,
+                  label: concat(
+                    "Motivation to Delete '",
+                    ri!nameIssuesToDelete[fv!index],
+                    "'"
+                  ),
+                  labelPosition: "ABOVE",
+                  value: index(ri!motivationsToDelete, fv!index, null),
+                  saveInto: ri!motivationsToDelete[fv!index],
+                  refreshAfter: "KEYPRESS",
+                  height: "MEDIUM",
+                  
+                )
+              }
+            ),
+            #"SYSTEM_SYSRULES_columnLayout"()
+          }
+        )
+      ),
+      #"SYSTEM_SYSRULES_ButtonLayout"(
+        primaryButtons: #"SYSTEM_SYSRULES_ButtonWidget"(
+          tooltip: "Fill all the Motivation Fields to enable the button",
+          label: "Confirm",
+          saveInto: a!save(ri!goNext, true),
+          submit: true,
+          disabled: count(ri!nameIssuesToDelete) &lt;&gt; count(
+            reject(fn!isnull, ri!motivationsToDelete)
+          )
+        ),
+        secondaryButtons: #"SYSTEM_SYSRULES_ButtonWidget"(
+          label: "Cancel",
+          saveInto: a!save(ri!goNext, false),
+          submit: true,
+          style: "DESTRUCTIVE",
+          confirmHeader: "You're about to Cancel, Are you sure?"
+        )
+      )
+    }
+  )
+}</definition>
+        <namedTypedValue>
+            <name>nameIssuesToDelete</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>motivationsToDelete</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>goNext</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000e961-e3c5-8000-9be9-011c48011c48_3622380"(
+  id: 13
+).issuename</a:value>
+                    <a:nameRef>nameIssuesToDelete</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{}</a:value>
+                    <a:nameRef>motivationsToDelete</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:boolean"/>
+                    <a:nameRef>goNext</a:nameRef>
+                    <a:id>3</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0001ea40-64f1-8000-9bf3-011c48011c48_4507533"/>
+    </history>
+</contentHaul>

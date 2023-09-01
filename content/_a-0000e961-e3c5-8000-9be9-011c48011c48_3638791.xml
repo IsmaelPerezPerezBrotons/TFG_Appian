@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001ea40-64f1-8000-9bf3-011c48011c48_4506666</versionUuid>
+    <interface>
+        <name>JA_ReportInterface</name>
+        <uuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3638791</uuid>
+        <description>Interface to show the reports about the issues</description>
+        <parentUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3605549</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!displayShow: true,
+  local!activeColumnChart: false,
+  local!userIssues: #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3644164"(ri!allIssues),
+  local!detailType,
+  {
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "",
+      contents: {
+        #"SYSTEM_SYSRULES_cardLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_sideBySideLayout"(
+              items: {
+                #"SYSTEM_SYSRULES_sideBySideItem"(
+                  item: /*pieChart*/
+                  #"SYSTEM_SYSRULES_pieChartField"(
+                    data: #"urn:appian:record-type:v1:f312bb20-e112-4c35-973a-97fa598c1661",
+                    config: #"SYSTEM_SYSRULES_pieChartConfig"(
+                      primaryGrouping: #"SYSTEM_SYSRULES_grouping"(
+                        field: #"urn:appian:record-field:v1:f312bb20-e112-4c35-973a-97fa598c1661/20a1d26c-dd1e-4d45-b27a-c2c6d0f5d292",
+                        alias: "issuetype_primaryGrouping"
+                      ),
+                      dataLimit: 100,
+                      link: #"SYSTEM_SYSRULES_dynamicLink"(
+                        value: index(
+                          ri!allIssues,
+                          wherecontains(
+                            fv!selection.issuetype_primaryGrouping,
+                            ri!allIssues.IssueType
+                          ),
+                          null
+                        ),
+                        saveInto: {
+                          local!detailType,
+                          a!save(local!activeColumnChart, true)
+                        }
+                      )
+                    ),
+                    labelPosition: "ABOVE",
+                    showDataLabels: true,
+                    showAsPercentage: false,
+                    colorScheme: "RAINFOREST",
+                    style: "DONUT",
+                    seriesLabelStyle: "ON_CHART",
+                    height: "MEDIUM",
+                    refreshAfter: "RECORD_ACTION"
+                  )
+                ),
+                #"SYSTEM_SYSRULES_sideBySideItem"(
+                  item: /*columnchart*/
+                  #"SYSTEM_SYSRULES_columnChartField"(
+                    categories: { "Open", "Close", "Blocked" },
+                    series: {
+                      a!localVariables(
+                        local!priorities: a!map(
+                          low: index(
+                            local!detailType,
+                            wherecontains(
+                              #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621866"[1],
+                              local!detailType.Priority
+                            ),
+                            null
+                          ),
+                          medium: index(
+                            local!detailType,
+                            wherecontains(
+                              #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621866"[2],
+                              local!detailType.Priority
+                            ),
+                            null
+                          ),
+                          high: index(
+                            local!detailType,
+                            wherecontains(
+                              #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621866"[3],
+                              local!detailType.Priority
+                            ),
+                            null
+                          ),
+                          ultraHigh: index(
+                            local!detailType,
+                            wherecontains(
+                              #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621866"[4],
+                              local!detailType.Priority
+                            ),
+                            null
+                          )
+                        ),
+                        {
+                          /*low*/
+                          #"SYSTEM_SYSRULES_chartSeries"(
+                            label: "Low Issues",
+                            data: {
+                              count(
+                                /*open*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[{ 1, 2, 3, 5, 7 }],
+                                  index(local!priorities, "low", null).Status
+                                )
+                              ),
+                              count(
+                                /*close*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[6],
+                                  index(local!priorities, "low", null).Status
+                                )
+                              ),
+                              count(
+                                /*blocked*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[4],
+                                  index(local!priorities, "low", null).Status
+                                )
+                              )
+                            }
+                          ),
+                          /*medium*/
+                          #"SYSTEM_SYSRULES_chartSeries"(
+                            label: "Medium Issues",
+                            data: {
+                              count(
+                                /*open*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[{ 1, 2, 3, 5, 7 }],
+                                  index(local!priorities, "medium", null).Status
+                                )
+                              ),
+                              count(
+                                /*close*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[6],
+                                  index(local!priorities, "medium", null).Status
+                                )
+                              ),
+                              count(
+                                /*blocked*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[4],
+                                  index(local!priorities, "medium", null).Status
+                                )
+                              )
+                            }
+                          ),
+                          /*high*/
+                          #"SYSTEM_SYSRULES_chartSeries"(
+                            label: "High Issues",
+                            data: {
+                              count(
+                                /*open*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[{ 1, 2, 3, 5, 7 }],
+                                  index(local!priorities, "high", null).Status
+                                )
+                              ),
+                              count(
+                                /*close*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[6],
+                                  index(local!priorities, "high", null).Status
+                                )
+                              ),
+                              count(
+                                /*blocked*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[4],
+                                  index(local!priorities, "high", null).Status
+                                )
+                              )
+                            }
+                          ),
+                          /*ultraHigh*/
+                          #"SYSTEM_SYSRULES_chartSeries"(
+                            label: "Ultra High Issues",
+                            data: {
+                              count(
+                                /*open*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[{ 1, 2, 3, 5, 7 }],
+                                  index(local!priorities, "ultraHigh", null).Status
+                                )
+                              ),
+                              count(
+                                /*close*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[6],
+                                  index(local!priorities, "ultraHigh", null).Status
+                                )
+                              ),
+                              count(
+                                /*blocked*/
+                                wherecontains(
+                                  #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"[4],
+                                  index(local!priorities, "ultraHigh", null).Status
+                                )
+                              )
+                            }
+                          )
+                        }
+                      )
+                    },
+                    stacking: "NORMAL",
+                    showLegend: true,
+                    showDataLabels: true,
+                    showTooltips: true,
+                    labelPosition: "ABOVE",
+                    colorScheme: #"SYSTEM_SYSRULES_colorSchemeCustom"(colors: #"_a-0001ea40-64f1-8000-9bf3-011c48011c48_4432344"),
+                    xAxisStyle: "STANDARD",
+                    yAxisStyle: "STANDARD"
+                  ),
+                  showWhen: and(
+                    local!activeColumnChart,
+                    local!displayShow
+                  )
+                )
+              },
+              showWhen: local!displayShow
+            ),
+            #"SYSTEM_SYSRULES_gridField_v1"(
+              data: local!userIssues,
+              columns: {
+                #"SYSTEM_SYSRULES_gridColumn"(
+                  label: "User",
+                  sortField: "user",
+                  value: fv!row.user
+                ),
+                #"SYSTEM_SYSRULES_gridColumn"(
+                  label: "Total Count",
+                  sortField: "totalCount",
+                  value: fv!row.totalCount
+                ),
+                #"SYSTEM_SYSRULES_gridColumn"(
+                  label: "Open Issues",
+                  sortField: "openIssues",
+                  value: if(
+                    a!isNullOrEmpty(fv!row.openIssues.Issueid),
+                    "---",
+                    #"SYSTEM_SYSRULES_linkField"(
+                      links: {
+                        #"SYSTEM_SYSRULES_forEach"(
+                          items: fv!row.openIssues,
+                          expression: #"SYSTEM_SYSRULES_dynamicLink"(
+                            label: concat(
+                              fv!item.issueName,
+                              " - ID: ",
+                              fv!item.Issueid
+                            ),
+                            value: fv!item.issueName,
+                            saveInto: {
+                              a!save(ri!issueName, fv!item),
+                              a!save(
+                                ri!nextInterface,
+                                /*navigate to grid*/
+                                2
+                              )
+                            }
+                          )
+                        )
+                      }
+                    )
+                  ),
+                  align: "START",
+                  width: "AUTO"
+                ),
+                #"SYSTEM_SYSRULES_gridColumn"(
+                  label: "Closed Issues",
+                  sortField: "closedIssues",
+                  value: if(
+                    a!isNullOrEmpty(fv!row.closedIssues.Issueid),
+                    "---",
+                    #"SYSTEM_SYSRULES_linkField"(
+                      links: {
+                        #"SYSTEM_SYSRULES_forEach"(
+                          items: fv!row.closedIssues,
+                          expression: #"SYSTEM_SYSRULES_dynamicLink"(
+                            label: concat(
+                              fv!item.issueName,
+                              " - ID: ",
+                              fv!item.Issueid
+                            ),
+                            value: fv!item.issueName,
+                            saveInto: {
+                              a!save(ri!issueName, fv!item),
+                              a!save(
+                                ri!nextInterface,
+                                /*navigate to grid*/
+                                2
+                              )
+                            }
+                          )
+                        )
+                      }
+                    )
+                  )
+                )
+              },
+              showWhen: not(local!displayShow),
+              validations: {}
+            ),
+            #"SYSTEM_SYSRULES_columnsLayout"(
+              columns: {
+                #"SYSTEM_SYSRULES_columnLayout"(
+                  contents: {
+                    #"SYSTEM_SYSRULES_radioButtonField"(
+                      label: "Display Type",
+                      labelPosition: "ABOVE",
+                      choiceLabels: { "Charts", "Issues Per User" },
+                      choiceValues: { true, false },
+                      value: local!displayShow,
+                      saveInto: local!displayShow,
+                      choiceLayout: "COMPACT",
+                      choiceStyle: "CARDS"
+                    )
+                  }
+                ),
+                #"SYSTEM_SYSRULES_columnLayout"(contents: {})
+              }
+            )
+          },
+          height: "AUTO",
+          style: "NONE",
+          marginBelow: "STANDARD"
+        )
+      }
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>nextInterface</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>issueName</name>
+            <type>
+                <name>JA_issue</name>
+                <namespace>urn:com:appian:types:IP</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>allIssues</name>
+            <type>
+                <name>JA_issue?list</name>
+                <namespace>urn:com:appian:types:IP</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>nextInterface</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">null</a:value>
+                    <a:nameRef>issueName</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000e961-e3c5-8000-9be9-011c48011c48_3622380"(name: null)</a:value>
+                    <a:nameRef>allIssues</a:nameRef>
+                    <a:id>3</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0001ea40-64f1-8000-9bf3-011c48011c48_4432539"/>
+        <historyInfo versionUuid="_a-0001ea40-64f1-8000-9bf3-011c48011c48_4506666"/>
+    </history>
+</contentHaul>

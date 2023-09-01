@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3636145</versionUuid>
+    <rule>
+        <name>JA_MessageCard</name>
+        <uuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3636062</uuid>
+        <description>Create chat-style letters</description>
+        <parentUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3605530</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_columnsLayout"(
+  columns: {
+    if(
+      ri!isSender,
+      #"SYSTEM_SYSRULES_columnLayout"(contents: {}),
+      null
+    ),
+    #"SYSTEM_SYSRULES_columnLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_cardLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_richTextDisplayField"(
+              labelPosition: "COLLAPSED",
+              value: {
+                #"SYSTEM_SYSRULES_richTextItem_v1"(text: ri!name, style: { "STRONG" })
+              },
+              align: if(ri!isSender, "RIGHT", "LEFT")
+            ),
+            #"SYSTEM_SYSRULES_richTextDisplayField"(
+              labelPosition: "COLLAPSED",
+              value: ri!body
+            )
+          },
+          height: "AUTO",
+          style: if(
+            ri!isSender,
+            #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3636074"[2],
+            #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3636074"[1]
+          ),
+          shape: "ROUNDED",
+          marginBelow: "STANDARD",
+          showShadow: true
+        )
+      }
+    ),
+    if(
+      ri!isSender,
+      null,
+      #"SYSTEM_SYSRULES_columnLayout"(contents: {})
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>name</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>body</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>isSender</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e961-e3c5-8000-9be9-011c48011c48_3636145"/>
+    </history>
+</contentHaul>

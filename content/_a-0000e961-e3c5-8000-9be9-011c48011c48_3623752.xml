@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3623881</versionUuid>
+    <interface>
+        <name>JA_ErrorInterface</name>
+        <uuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3623752</uuid>
+        <description>Error interface to show the user what error is and if can retry</description>
+        <parentUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3605549</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{
+  #"SYSTEM_SYSRULES_cardLayout"(
+    contents: {
+      #"SYSTEM_SYSRULES_richTextDisplayField"(
+        labelPosition: "COLLAPSED",
+        value: {
+          #"SYSTEM_SYSRULES_richTextItem_v1"(
+            text: {
+              "An error has occurred while inserting data, click here to retry"
+            },
+            link: #"SYSTEM_SYSRULES_dynamicLink"(
+              value: #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3622849"[1],
+              saveInto: ri!nextInterface
+            ),
+            color: "#cc0000",
+            size: "LARGE"
+          )
+        },
+        preventWrapping: true,
+        align: "CENTER"
+      )
+    },
+    height: "AUTO",
+    style: "ERROR",
+    shape: "ROUNDED",
+    padding: "STANDARD",
+    marginAbove: "NONE",
+    marginBelow: "NONE",
+    decorativeBarPosition: "TOP",
+    decorativeBarColor: "WARN"
+  )
+}</definition>
+        <namedTypedValue>
+            <name>nextInterface</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e961-e3c5-8000-9be9-011c48011c48_3623881"/>
+    </history>
+</contentHaul>

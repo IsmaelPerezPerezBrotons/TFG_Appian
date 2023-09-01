@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3624746</versionUuid>
+    <decision>
+        <name>JA_NextStatusIssue</name>
+        <uuid>a4396c2d-a578-42dd-bd45-c7d9d80e79e0</uuid>
+        <description>Give us the next status of an issue</description>
+        <parentUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3624689</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>fn!override_exception_appian_internal(fn!with(local!decisiondefinition: a!decisiondesigner_cache(uuid: "a4396c2d-a578-42dd-bd45-c7d9d80e79e0",versionKey: "e5470ee9-25b1-43c0-8aac-adec3caa2aca",value: #"SYSTEM_SYSRULES_dd_dd"('hitPolicy': #"SYSTEM_SYSRULES_dd_dhp"("UNIQUE"), 'inputs': {#"SYSTEM_SYSRULES_dd_di"('name': "Status", 'type': 'type!{http://www.appian.com/ae/types/2009}Text', 'id': 1, 'restrictionType': #"SYSTEM_SYSRULES_dd_dirt"("LOOKUP"), 'restriction': #"SYSTEM_SYSRULES_dd_dirl"('allowedLabels': {"To Be Discussed", "Open", "In Progress", "Blocked", "Testing", "Close", "To Be Assign"}, 'allowedValues': {"To Be Discussed", "Open", "In Progress", "Blocked", "Testing", "Close", "To Be Assign"}))}, 'outputs': {#"SYSTEM_SYSRULES_dd_do"('id': 1, 'name': "output", 'type': 'type!{http://www.appian.com/ae/types/2009}Text', 'restrictionType': #"SYSTEM_SYSRULES_dd_dort"("LOOKUP"), 'restriction': #"SYSTEM_SYSRULES_dd_dorl"('allowedLabels': {"To Be Discussed", "Open", "In Progress", "Blocked", "Testing", "Close", "To Be Assign"}, 'allowedValues': {"To Be Discussed", "Open", "In Progress", "Blocked", "Testing", "Close", "To Be Assign"}), 'returnListType': true)}, 'rules': {#"SYSTEM_SYSRULES_dd_dr"('id': 1, 'inputs': {#"SYSTEM_SYSRULES_dd_dri"('id': 1, 'decisionInputId': 1, 'operator': #"SYSTEM_SYSRULES_dd_dop"('operator': #"SYSTEM_SYSRULES_dd_dopt"("IN"), 'value1': {"Open"}))}, 'outputs': {#"SYSTEM_SYSRULES_dd_dro"('id': 1, 'decisionOutputId': 1, 'value': {"To Be Discussed", "To Be Assign", "Open"})}), #"SYSTEM_SYSRULES_dd_dr"('id': 2, 'inputs': {#"SYSTEM_SYSRULES_dd_dri"('id': 3, 'decisionInputId': 1, 'operator': #"SYSTEM_SYSRULES_dd_dop"('operator': #"SYSTEM_SYSRULES_dd_dopt"("IN"), 'value1': {"To Be Discussed"}))}, 'outputs': {#"SYSTEM_SYSRULES_dd_dro"('id': 2, 'decisionOutputId': 1, 'value': {"To Be Assign", "To Be Discussed"})}), #"SYSTEM_SYSRULES_dd_dr"('id': 3, 'inputs': {#"SYSTEM_SYSRULES_dd_dri"('id': 5, 'decisionInputId': 1, 'operator': #"SYSTEM_SYSRULES_dd_dop"('operator': #"SYSTEM_SYSRULES_dd_dopt"("IN"), 'value1': {"To Be Assign"}))}, 'outputs': {#"SYSTEM_SYSRULES_dd_dro"('id': 3, 'decisionOutputId': 1, 'value': {"In Progress", "Blocked", "To Be Assign"})}), #"SYSTEM_SYSRULES_dd_dr"('id': 4, 'inputs': {#"SYSTEM_SYSRULES_dd_dri"('id': 7, 'decisionInputId': 1, 'operator': #"SYSTEM_SYSRULES_dd_dop"('operator': #"SYSTEM_SYSRULES_dd_dopt"("IN"), 'value1': {"In Progress"}))}, 'outputs': {#"SYSTEM_SYSRULES_dd_dro"('id': 4, 'decisionOutputId': 1, 'value': {"Blocked", "Testing", "In Progress"})}), #"SYSTEM_SYSRULES_dd_dr"('id': 5, 'inputs': {#"SYSTEM_SYSRULES_dd_dri"('id': 8, 'decisionInputId': 1, 'operator': #"SYSTEM_SYSRULES_dd_dop"('operator': #"SYSTEM_SYSRULES_dd_dopt"("IN"), 'value1': {"Testing"}))}, 'outputs': {#"SYSTEM_SYSRULES_dd_dro"('id': 5, 'decisionOutputId': 1, 'value': {"Blocked", "Close", "Testing"})}), #"SYSTEM_SYSRULES_dd_dr"('id': 6, 'inputs': {#"SYSTEM_SYSRULES_dd_dri"('id': 9, 'decisionInputId': 1, 'operator': #"SYSTEM_SYSRULES_dd_dop"('operator': #"SYSTEM_SYSRULES_dd_dopt"("IN"), 'value1': {"Blocked"}))}, 'outputs': {#"SYSTEM_SYSRULES_dd_dro"('id': 6, 'decisionOutputId': 1, 'value': {"In Progress", "Testing", "To Be Assign", "Blocked"})}), #"SYSTEM_SYSRULES_dd_dr"('id': 7, 'inputs': {#"SYSTEM_SYSRULES_dd_dri"('id': 10, 'decisionInputId': 1, 'operator': #"SYSTEM_SYSRULES_dd_dop"('operator': #"SYSTEM_SYSRULES_dd_dopt"("IN"), 'value1': {"Close"}))}, 'outputs': {#"SYSTEM_SYSRULES_dd_dro"('id': 7, 'decisionOutputId': 1)})}, 'isUnique': true, 'defaultOutputs': {#"SYSTEM_SYSRULES_dd_dro"('id': 1, 'decisionOutputId': 1, 'value': {"Open"})})),#"SYSTEM_SYSRULES_dd_exr"(decisionDefinition:local!decisiondefinition,executionInputs:{#"SYSTEM_SYSRULES_dd_dei"(decisionInputId:1,value:'ri!Status')})))</definition>
+        <namedTypedValue>
+            <name>Status</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <inputMetadataList>
+            <inputMetadata>
+                <inputId>1</inputId>
+                <nameRef>Status</nameRef>
+                <allowedLabelsExpr>#"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"</allowedLabelsExpr>
+                <allowedValuesExpr>#"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"</allowedValuesExpr>
+            </inputMetadata>
+        </inputMetadataList>
+        <outputMetadataList>
+            <outputMetadata>
+                <outputId>1</outputId>
+                <nameRef>output</nameRef>
+                <allowedLabelsExpr>#"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"</allowedLabelsExpr>
+                <allowedValuesExpr>#"_a-0000e961-e3c5-8000-9be9-011c48011c48_3621831"</allowedValuesExpr>
+                <typeName>{http://www.appian.com/ae/types/2009}Text?list</typeName>
+            </outputMetadata>
+        </outputMetadataList>
+        <hitPolicy>UNIQUE</hitPolicy>
+    </decision>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e961-e3c5-8000-9be9-011c48011c48_3624746"/>
+    </history>
+</contentHaul>

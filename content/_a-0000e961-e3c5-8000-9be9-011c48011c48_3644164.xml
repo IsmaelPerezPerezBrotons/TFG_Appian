@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3664221</versionUuid>
+    <rule>
+        <name>JA_GetUsersAndRelatedIssues</name>
+        <uuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3644164</uuid>
+        <description>Get the users and their related issues</description>
+        <parentUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3605530</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!issues: if(
+    a!isNullOrEmpty(ri!allIssues),
+    #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3622380"(name: null),
+    ri!allIssues
+  ),
+  local!openIssues: index(
+    local!issues,
+    wherecontains(false, local!issues.Resolution),
+    null
+  ),
+  local!closedIssues: index(
+    local!issues,
+    wherecontains(true, local!issues.Resolution),
+    null
+  ),
+  local!userIssues: getdistinctusers(local!issues.Assignee),
+  #"SYSTEM_SYSRULES_forEach"(
+    items: local!userIssues,
+    expression: a!map(
+      user: fv!item,
+      totalCount: count(
+        index(
+          local!issues.Issueid,
+          wherecontains(fv!item, touser(local!issues.Assignee)),
+          null
+        )
+      ),
+      openIssues: index(
+        local!openIssues,
+        wherecontains(
+          fv!item,
+          touser(local!openIssues.Assignee)
+        ),
+        null
+      ),
+      closedIssues: index(
+        local!closedIssues,
+        wherecontains(
+          fv!item,
+          touser(local!closedIssues.Assignee)
+        ),
+        null
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>allIssues</name>
+            <type>
+                <name>JA_issue?list</name>
+                <namespace>urn:com:appian:types:IP</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>Case Base</a:name>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{'type!{urn:com:appian:types:IP}JA_issue'('IssueType': "Bug", 'Issueid': 24, 'Summary': "asdf", 'Assignee': "iperezp", 'Reporter': "iperezp", 'Priority': "Medium", 'PriorityNumber': 1, 'Status': "Open", 'Resolution': false, 'Created': fn!datetime(2023, 2, 8, 12, 1, 41, 180), 'Updated': fn!datetime(2023, 2, 8, 12, 1, 41, 180), 'Duedate': fn!date(2023, 2, 15), 'IssueName': "update2"), 'type!{urn:com:appian:types:IP}JA_issue'('IssueType': "Bug", 'Issueid': 15, 'Summary': "prueba de inserci" &amp; fn!char(243) &amp; "n a trav" &amp; fn!char(233) &amp; "s de los records write", 'Assignee': "jperezporcar", 'Reporter': "iperezp", 'Priority': "High", 'PriorityNumber': 2, 'Status': "Open", 'Resolution': false, 'Created': fn!datetime(2023, 2, 8, 11, 25, 33, 730), 'Updated': fn!datetime(2023, 2, 8, 11, 25, 33, 730), 'Duedate': fn!date(2023, 2, 8), 'IssueName': "nuevo Por Record"), 'type!{urn:com:appian:types:IP}JA_issue'('IssueType': "Bug", 'Issueid': 12, 'Summary': "prueba de inserci" &amp; fn!char(243) &amp; "n a trav" &amp; fn!char(233) &amp; "s de los records write", 'Assignee': "jperezporcar", 'Reporter': "iperezp", 'Priority': "High", 'PriorityNumber': 2, 'Status': "Open", 'Resolution': false, 'Created': fn!datetime(2023, 2, 8, 11, 21, 21, 740), 'Updated': fn!datetime(2023, 2, 8, 11, 21, 21, 740), 'Duedate': fn!date(2023, 2, 8), 'IssueName': "nuevo Por Record"), 'type!{urn:com:appian:types:IP}JA_issue'('IssueType': "Bug", 'Issueid': 11, 'Summary': "NEWWW WWWW", 'Assignee': "hlluncorq", 'Reporter': "hlluncorq", 'Priority': "Medium", 'PriorityNumber': 1, 'Status': "Close", 'Resolution': true, 'Created': fn!datetime(2023, 2, 1, 17, 0, 37, 310), 'Updated': fn!datetime(2023, 2, 1, 17, 0, 37, 310), 'Duedate': fn!date(2023, 2, 1), 'IssueName': "BUG222"), 'type!{urn:com:appian:types:IP}JA_issue'('IssueType': "Bug", 'Issueid': 10, 'Summary': "NEWWW WWWW", 'Assignee': "hlluncorq", 'Reporter': "hlluncorq", 'Priority': "Medium", 'PriorityNumber': 1, 'Status': "Close", 'Resolution': true, 'Created': fn!datetime(2023, 2, 1, 17, 0, 37, 310), 'Updated': fn!datetime(2023, 2, 1, 17, 0, 37, 310), 'Duedate': fn!date(2023, 2, 1), 'IssueName': "BUG222"), 'type!{urn:com:appian:types:IP}JA_issue'('IssueType': "Bug", 'Issueid': 9, 'Summary': "Bug pico", 'Assignee': "iperezp", 'Reporter': "jperezporcar", 'Priority': "Medium", 'PriorityNumber': 1, 'Status': "Open", 'Resolution': false, 'Created': fn!datetime(2023, 2, 1, 16, 59, 3, 80), 'Updated': fn!datetime(2023, 2, 1, 16, 59, 3, 80), 'Duedate': fn!date(2023, 2, 23), 'IssueName': "NewBug"), 'type!{urn:com:appian:types:IP}JA_issue'('IssueType': "Bug", 'Issueid': 7, 'Summary': "as", 'Assignee': "jperezporcar", 'Reporter': "iperezp", 'Priority': "Low", 'PriorityNumber': 0, 'Status': "Open", 'Resolution': false, 'Created': fn!datetime(2023, 1, 21, 13, 9, 44, 910), 'Updated': fn!datetime(2023, 2, 8, 11, 55, 40, 920), 'Duedate': fn!date(2023, 1, 28), 'IssueName': "preuba acct"), 'type!{urn:com:appian:types:IP}JA_issue'('IssueType': "Bug", 'Issueid': 3, 'Summary': "SSS", 'Assignee': "iperezp", 'Reporter': "hlluncorq", 'Priority': "Ultra High", 'PriorityNumber': 3, 'Status': "To Be Discussed", 'Resolution': false, 'Created': fn!datetime(2023, 1, 20, 22, 16, 3, 670), 'Updated': fn!datetime(2023, 1, 20, 22, 16, 3, 670), 'Duedate': fn!date(2023, 2, 3), 'IssueName': "PRUEBA DESDE PM")}
+
+</a:value>
+                    <a:nameRef>allIssues</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e961-e3c5-8000-9be9-011c48011c48_3664221"/>
+    </history>
+</contentHaul>

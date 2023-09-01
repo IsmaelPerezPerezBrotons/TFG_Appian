@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_e-0000ea40-6415-8000-9b41-01075c01075c_13837</versionUuid>
+    <group>
+        <name>JA Asigned</name>
+        <securityMap>SECURITYMAP_TEAM</securityMap>
+        <uuid>_e-0000e961-e3c5-8000-9b36-01075c01075c_11265</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <parentUuid>95e56ef1-8b8d-474a-9f7e-07bb686597af</parentUuid>
+        <description>Users that can be selected in the App</description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes>
+            <attribute>
+                <name>Department</name>
+                <type>TYPE_STRING</type>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="xsd:string">Financiero</value>
+            </attribute>
+        </attributes>
+    </group>
+    <members>
+        <users/>
+        <groups/>
+    </members>
+    <admins>
+        <users/>
+        <groups/>
+    </admins>
+    <ruleSet/>
+    <history>
+        <historyInfo versionUuid="_e-0000ea40-6415-8000-9b41-01075c01075c_13837"/>
+    </history>
+</groupHaul>

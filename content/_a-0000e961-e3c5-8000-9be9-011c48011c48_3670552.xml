@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001ea40-64f1-8000-9bf3-011c48011c48_4507435</versionUuid>
+    <interface>
+        <name>JA_MainReport</name>
+        <uuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3670552</uuid>
+        <description>Interface to surface by the reports</description>
+        <parentUuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3605549</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!filteredIssue: a!refreshVariable(
+    value:'type!{urn:com:appian:types:IP}JA_issue'(),
+    refreshAfter: "RECORD_ACTION"
+  ),
+  local!nextInterface,
+  local!allIssues: a!refreshVariable(
+    value: #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3622380"(
+      name: local!filteredIssue.IssueName,
+      id: local!filteredIssue.Issueid,
+      asignee: local!filteredIssue.Assignee,
+      reporter: local!filteredIssue.Reporter,
+      priority: local!filteredIssue.Priority,
+      created: local!filteredIssue.Created,
+      updated: local!filteredIssue.Updated,
+      duedate: local!filteredIssue.Duedate,
+      type: local!filteredIssue.IssueType
+    ),
+    refreshAfter: "RECORD_ACTION"
+  ),
+  {
+    choose(
+      if(
+        a!isNullOrEmpty(local!nextInterface),
+        1,
+        local!nextInterface
+      ),
+      #"_a-0000e961-e3c5-8000-9be9-011c48011c48_3638791"(
+        nextInterface: local!nextInterface,
+        issueName: local!filteredIssue,
+        allIssues: local!allIssues
+      ),
+      #"_a-0001ea40-64f1-8000-9bf3-011c48011c48_4492666"(
+        nextInterface: local!nextInterface,
+        filteredIssue: local!filteredIssue,
+        query: local!allIssues
+      )
+    )
+  }
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e961-e3c5-8000-9be9-011c48011c48_3670891"/>
+        <historyInfo versionUuid="_a-0001ea40-64f1-8000-9bf3-011c48011c48_4507435"/>
+    </history>
+</contentHaul>

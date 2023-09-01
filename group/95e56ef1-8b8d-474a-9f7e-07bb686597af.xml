@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>95e56ef1-8b8d-474a-9f7e-07bb686597af</versionUuid>
+    <group>
+        <name>JA Users</name>
+        <securityMap>SECURITYMAP_TEAM</securityMap>
+        <uuid>95e56ef1-8b8d-474a-9f7e-07bb686597af</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <description>Assigns Viewer permissions to users for objects in the application</description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes>
+            <attribute>
+                <name>Department</name>
+                <type>TYPE_STRING</type>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="xsd:string">Financiero</value>
+            </attribute>
+        </attributes>
+    </group>
+    <members>
+        <users/>
+        <groups>
+            <groupUuid>_e-0000e961-e3c5-8000-9b36-01075c01075c_11294</groupUuid>
+            <groupUuid>_e-0000ea40-6415-8000-9b41-01075c01075c_13835</groupUuid>
+            <groupUuid>04cea89a-2cab-4faa-9c63-e80759e50865</groupUuid>
+            <groupUuid>_e-0000e961-e3c5-8000-9b36-01075c01075c_11265</groupUuid>
+        </groups>
+    </members>
+    <admins>
+        <users/>
+        <groups>
+            <groupUuid>04cea89a-2cab-4faa-9c63-e80759e50865</groupUuid>
+        </groups>
+    </admins>
+    <ruleSet/>
+    <history>
+        <historyInfo versionUuid="95e56ef1-8b8d-474a-9f7e-07bb686597af"/>
+    </history>
+</groupHaul>

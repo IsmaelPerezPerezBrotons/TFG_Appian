@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dataStoreHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001ea40-64f1-8000-9bf3-011c48011c48_4516529</versionUuid>
+    <dataStore>
+        <uuid>_a-0000e961-e3c5-8000-9be9-011c48011c48_3605479</uuid>
+        <name>JA DS</name>
+        <description>Data store of JirAppian</description>
+        <dataSourceKey>jdbc/Appian</dataSourceKey>
+        <adaptingExplicitSqlNames>false</adaptingExplicitSqlNames>
+        <autoUpdateSchema>false</autoUpdateSchema>
+        <entities>
+            <entity>
+                <uuid>bba281a1-205b-4906-a629-e040248c0498</uuid>
+                <name>JA_issue</name>
+                <type>{urn:com:appian:types:IP}JA_issue</type>
+            </entity>
+            <entity>
+                <uuid>3cd60069-c7d1-4642-8c8c-f5c3b41a68af</uuid>
+                <name>JA_Chat</name>
+                <type>{urn:com:appian:types:JA}JA_Chat</type>
+            </entity>
+            <entity>
+                <uuid>1e8f6a4c-dbe1-46c3-a713-7277731f6219</uuid>
+                <name>JA_deleteIssues</name>
+                <type>{urn:com:appian:types:JA}JA_deletedIssues</type>
+            </entity>
+        </entities>
+    </dataStore>
+    <isPublished>true</isPublished>
+    <roleMap>
+        <role inherit="false" allowForAll="false" name="administrators">
+            <users/>
+            <groups>
+                <groupUuid>04cea89a-2cab-4faa-9c63-e80759e50865</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="readers">
+            <users/>
+            <groups>
+                <groupUuid>95e56ef1-8b8d-474a-9f7e-07bb686597af</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e9d9-6375-8000-9bed-011c48011c48_3725508"/>
+        <historyInfo versionUuid="_a-0001ea40-64f1-8000-9bf3-011c48011c48_4447914"/>
+        <historyInfo versionUuid="_a-0001ea40-64f1-8000-9bf3-011c48011c48_4447921"/>
+        <historyInfo versionUuid="_a-0001ea40-64f1-8000-9bf3-011c48011c48_4516529"/>
+    </history>
+</dataStoreHaul>
